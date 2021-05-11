@@ -12,9 +12,10 @@ RUN git clone https://github.com/Chia-Network/chia-blockchain.git --branch ${BRA
  && chmod +x install.sh && ./install.sh \
  && . ./activate && chia init
 
-RUN pip install git+https://github.com/ericaltendorf/plotman@main
-
 WORKDIR /chia-blockchain/venv/bin  
+
+RUN ./pip install git+https://github.com/ericaltendorf/plotman@main
+
 VOLUME /config
 
 COPY entrypoint.sh /entrypoint.sh
