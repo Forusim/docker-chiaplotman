@@ -7,7 +7,7 @@ COPY dpkg_excludes /etc/dpkg/dpkg.cfg.d/excludes
 RUN apt-get update \
  && apt-get --no-install-recommends -y install git lsb-release sudo git nano rsync
 
-RUN git clone https://github.com/Chia-Network/chia-blockchain.git --brach ${BRANCH} --recurse-submodules \
+RUN git clone https://github.com/Chia-Network/chia-blockchain.git --branch ${BRANCH} --recurse-submodules \
  && cd chia-blockchain \
  && chmod +x install.sh && ./install.sh
 
