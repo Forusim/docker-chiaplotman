@@ -32,10 +32,8 @@ fi
 
 if cmp $CONFDIR/plotman.yaml.default $CONFDIR/plotman.yaml; then
   echo "Please edit $CONFDIR/plotman.yaml first".
-  echo "Call from docker shell: plotman --help"
+  echo "Call from docker shell: . ./activate && plotman --help"
 else
-  cd /chia-blockchain
+  echo "Call from docker shell: . ./activate && plotman interactive"
   . ./activate && plotman plot
 fi
-
-echo "Call from docker shell: plotman interactive"
