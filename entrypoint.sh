@@ -18,7 +18,6 @@ if [[ ! -d $CONFDIR ]]; then
   exit 1
 fi
 
-plotman config generate
 mv $GENDIR/plotman.yaml $GENDIR/plotman.yaml.default
 cp $GENDIR/plotman.yaml.default $CONFDIR
 
