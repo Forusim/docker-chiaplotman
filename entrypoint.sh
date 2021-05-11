@@ -27,7 +27,7 @@ fi
 ln -s $CONFDIR/plotman.yaml $GENDIR/plotman.yaml
 
 if [[ ! -d $CONFDIR/logs ]]; then
-  makedir $CONFDIR/logs
+  mkdir $CONFDIR/logs
 fi
 
 if cmp $CONFDIR/plotman.yaml.default $CONFDIR/plotman.yaml; then
