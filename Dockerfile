@@ -9,9 +9,8 @@ RUN apt-get update \
 
 RUN git clone https://github.com/Chia-Network/chia-blockchain.git --branch ${BRANCH} --recurse-submodules \
  && cd chia-blockchain \
- && chmod +x install.sh && ./install.sh
-
-RUN . ./activate && chia init
+ && chmod +x install.sh && ./install.sh \
+ && . ./activate && chia init
 
 RUN pip install git+https://github.com/ericaltendorf/plotman@main
 
