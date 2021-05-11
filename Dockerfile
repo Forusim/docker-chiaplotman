@@ -12,11 +12,10 @@ RUN git clone https://github.com/Chia-Network/chia-blockchain.git --branch ${BRA
  && chmod +x install.sh && ./install.sh \
  && . ./activate && chia init
 
-WORKDIR /chia-blockchain/venv/bin  
+WORKDIR /chia-blockchain
 
-RUN ./pip install git+https://github.com/ericaltendorf/plotman@main \
- && cd plotman \
- && plotman config generate
+RUN venv/bin/pip install git+https://github.com/ericaltendorf/plotman@main \
+ && . ./activate && plotman config generate
 
 VOLUME /config
 
