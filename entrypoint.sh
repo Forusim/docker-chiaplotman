@@ -4,7 +4,6 @@ TEMPDIR=/temp
 PLOTSDIR=/plots
 CONFDIR=/config
 GENDIR=/root/.config/plotman
-AUTOSTART="no"
 
 if [[ ! -d $TEMPDIR ]]; then
   echo "Temp directory does not exist. Please bind mount a volume with the docker '-v' option to '$TEMPDIR'."
@@ -27,21 +26,16 @@ if [[ ! -f "$CONFDIR/plotman.yaml" ]]; then
 fi
 ln -s $CONFDIR/plotman.yaml $GENDIR/plotman.yaml
 
-cd /chia-blockchain
-. ./activate
-#chia init
+if [[ ! -d $CONFDIR/logs ]]; then
+  makedir $CONFDIR/logs
+fi
 
-if [[ ${AUTOSTART} == 'yes' ]]; then
-  if cmp $CONFDIR/plotman.yaml.default $CONFDIR/plotman.yaml; then
-    echo "Please edit $CONFDIR/plotman.yaml first".
-    echo "Call from docker shell: plotman --help"
-  else
-    plotman plot
-  fi
+if cmp $CONFDIR/plotman.yaml.default $CONFDIR/plotman.yaml; then
+  echo "Please edit $CONFDIR/plotman.yaml first".
+  echo "Call from docker shell: plotman --help"
 else
-  echo "Call from docker shell: plotman plot"
+  cd /chia-blockchain
+  . ./activate && plotman plot
 fi
 
 echo "Call from docker shell: plotman interactive"
-
-while true; do sleep 30; done;
